@@ -165,8 +165,8 @@ public class Cleanse {
 
 	public void cleansePoliceCalls() throws IOException {
 		Pattern pattern = Pattern
-				.compile("\\\"(.*)\\\",\\\"(.*)\\\",\\\"(\\w*)\\\",\\\"(\\w*)\\\",(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\"");
-
+				.compile("\\\"(.*)\\\",\\\"(.*)\\\",\\\"(\\w*)\\\",\\\"(\\w*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\",\\\"(.*)\\\"");
+		
 		BufferedReader reader = new BufferedReader(new FileReader(new File("data/police_january.csv")));
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("data/police_january_clean.csv")));
 
@@ -231,7 +231,7 @@ public class Cleanse {
 			cleanse.cleanseRenoPay();
 
 			cleanse.cleanseFireCalls();
-			//cleanse.cleansePoliceCalls();
+			cleanse.cleansePoliceCalls();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
