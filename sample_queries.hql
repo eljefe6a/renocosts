@@ -28,7 +28,7 @@ select avg(totalCost) from firecallscost where paydesc = 'TotalFirePay';
 -- Average cost for Firemen calls
 select avg(totalCost) from firecallscost where paydesc = 'TotalFiremanPay';
 
--- Average cost for Reno Governemnt for fire calls
+-- Average cost for Reno Government for fire calls
 select avg(totalCost) from firecallscost where paydesc = 'TotalRenoPay';
 
 -- Average cost for Police calls
@@ -37,7 +37,7 @@ select avg(totalCost) from policecallscost where paydesc = 'TotalPolicePay';
 -- Average cost for Policeman calls
 select avg(totalCost) from policecallscost where paydesc = 'TotalPolicemanPay';
 
--- Average cost for Reno Governemnt for police calls
+-- Average cost for Reno Government for police calls
 select avg(totalCost) from policecallscost where paydesc = 'TotalRenoPay';
 
 -- Average costs for fire calls broken down by station
