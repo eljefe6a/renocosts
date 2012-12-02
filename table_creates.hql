@@ -1,39 +1,42 @@
-drop table firepay;
-CREATE TABLE firepay
-       (LASTNAME STRING,FIRSTNAME STRING,POSITIONCODE int,POSITION STRING,SALARY STRING,BENEFITS STRING,TOTALSALARYBENEFITS STRING)
-       ROW FORMAT DELIMITED
-       FIELDS TERMINATED BY ','
-       STORED AS TEXTFILE;
-LOAD DATA INPATH "EmployeePay_fire_clean.csv" INTO TABLE firepay;
-
-drop table policepay;
-CREATE TABLE policepay
-       (LASTNAME STRING,FIRSTNAME STRING,POSITIONCODE int,POSITION STRING,SALARY STRING,BENEFITS STRING,TOTALSALARYBENEFITS STRING)
-       ROW FORMAT DELIMITED
-       FIELDS TERMINATED BY ','
-       STORED AS TEXTFILE;
-LOAD DATA INPATH "EmployeePay_police_clean.csv" INTO TABLE policepay;
-
-drop table renopay;
-CREATE TABLE renopay
-       (DEPARTMENTNAME STRING,YEAR int,SALARY string,BENEFITS string,TOTALSALARYBENEFITS string)
-       ROW FORMAT DELIMITED
-       FIELDS TERMINATED BY ','
-       STORED AS TEXTFILE;
-LOAD DATA INPATH "RenoDeptPay_clean.csv" INTO TABLE renopay;
-
-drop table policecalls;
-CREATE TABLE policecalls
+drop table policecallsorig;
+CREATE TABLE policecallsorig
        (PRIORITY string,CALL_TYPE string,JURISDICTION string,HOME_DAREA string,RECEIVED_DATE string,RECEIVED_TIME string,DISPATCH_TIME string,ONSCENE_TIME string,CLEAR_TIME string,DISPOSITION string,SECONDSONCALL INT)
        ROW FORMAT DELIMITED
        FIELDS TERMINATED BY ','
        STORED AS TEXTFILE;
-LOAD DATA INPATH "police_january_clean.csv" INTO TABLE policecalls;
+LOAD DATA INPATH "police_january_clean.csv" INTO TABLE policecallsorig;
 
-drop table firecalls;
-CREATE TABLE firecalls
+drop table firecallsorig;
+CREATE TABLE firecallsorig
        (ALARM_LEVEL string,CALL_TYPE string,JURISDICTION string,STATION string,RECEIVED_DATE string,RECEIVED_TIME string,DISPATCH_1ST_TIME string,ONSCENE_1ST_TIME string,FIRE_CONTROL_TIME string,CLOSE_TIME string,SECONDSONCALL INT)
        ROW FORMAT DELIMITED
        FIELDS TERMINATED BY ','
        STORED AS TEXTFILE;
-LOAD DATA INPATH "fire_january_clean.csv" INTO TABLE firecalls;
+LOAD DATA INPATH "fire_january_clean.csv" INTO TABLE firecallsorig;
+
+-- TODO: Change the Cleanse program to output the 1
+drop table policecalls;
+CREATE TABLE policecalls
+       (PAYTYPE int, PRIORITY string,CALL_TYPE string,JURISDICTION string,HOME_DAREA string,RECEIVED_DATE string,RECEIVED_TIME string,DISPATCH_TIME string,ONSCENE_TIME string,CLEAR_TIME string,DISPOSITION string,SECONDSONCALL INT)
+       ROW FORMAT DELIMITED
+       FIELDS TERMINATED BY ','
+       STORED AS TEXTFILE;
+
+INSERT OVERWRITE TABLE policecalls
+SELECT *
+FROM (
+  select 1 as paytype, * from policecallsorig
+) totalpays;
+
+drop table firecalls;
+CREATE TABLE firecalls
+       (PAYTYPE int, PRIORITY string,CALL_TYPE string,JURISDICTION string,HOME_DAREA string,RECEIVED_DATE string,RECEIVED_TIME string,DISPATCH_TIME string,ONSCENE_TIME string,CLEAR_TIME string,DISPOSITION string,SECONDSONCALL INT)
+       ROW FORMAT DELIMITED
+       FIELDS TERMINATED BY ','
+       STORED AS TEXTFILE;
+
+INSERT OVERWRITE TABLE firecalls
+SELECT *
+FROM (
+  select 1 as paytype, * from firecallsorig
+) totalpays;
