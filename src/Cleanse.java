@@ -10,6 +10,12 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * TODO: This class should be changed to use MapReduce to scale properly.
+ * 
+ * @author Jesse Anderson
+ *
+ */
 public class Cleanse {
 	public void cleansePay(String input, String output) throws IOException {
 		Pattern pattern = Pattern
