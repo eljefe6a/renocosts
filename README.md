@@ -2,6 +2,10 @@ Takes open data from Reno's city government and combines the data to form a new 
 
 This project uses Java for cleansing the data sources and Hive (HQL) to run queries on the resulting data.
 
+To try out this project, you will need Hadoop and Hive.  Run the HQL files through Hive using the hive -f filename.hql syntax.
+
+Steps:
+
 Run table_create_1_paytables.hql
 
 Run table_create_2_costpersecond.hql
