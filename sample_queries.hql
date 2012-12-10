@@ -41,7 +41,7 @@ select avg(totalCost) from policecallscost where paydesc = 'TotalPolicemanPay';
 select avg(totalCost) from policecallscost where paydesc = 'TotalRenoPay';
 
 -- Average costs for fire calls broken down by station
-select HOME_DAREA, avg(totalCost) from firecallscost where paydesc = 'TotalFirePay' group by HOME_DAREA;
+select STATION, avg(totalCost) from firecallscost where paydesc = 'TotalFirePay' group by STATION;
 
 -- Costliest fire call
 select * from firecallscost order by totalCost DESC limit 1;

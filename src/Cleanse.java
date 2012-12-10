@@ -109,6 +109,9 @@ public class Cleanse {
 			Matcher matcher = pattern.matcher(line);
 
 			if (matcher.matches()) {
+				// Add a column for joining fire datasets
+				// Use 1 for police calls in case we want to merge fire and police data
+				writer.write("1,");
 				// Alarm level
 				writer.write(matcher.group(1) + ",");
 				// Call Type
@@ -189,6 +192,9 @@ public class Cleanse {
 			Matcher matcher = pattern.matcher(line);
 
 			if (matcher.matches()) {
+				// Add a column for joining police datasets
+				// Use 2 for police calls in case we want to merge fire and police data
+				writer.write("2,");
 				// Priority
 				writer.write(matcher.group(1) + ",");
 				// Call Type

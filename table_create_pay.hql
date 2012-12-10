@@ -27,9 +27,9 @@ CREATE TABLE totalPolicePays
 INSERT OVERWRITE TABLE totalPolicePays
 SELECT totalpays.paytype, totalpays.paydesc, totalpays.totalPay
 FROM (
-  select 1 as paytype, 'TotalPolicePay' as paydesc, sum(totalsalarybenefits) / 31536000 as totalPay from policepay
+  select 2 as paytype, 'TotalPolicePay' as paydesc, sum(totalsalarybenefits) / 31536000 as totalPay from policepay
   UNION ALL
-  select 1 as paytype, 'TotalPolicemanPay' as paydesc, sum(totalsalarybenefits) / 31536000 as totalPay from policepay where positioncode between 7500 and 7599
+  select 2 as paytype, 'TotalPolicemanPay' as paydesc, sum(totalsalarybenefits) / 31536000 as totalPay from policepay where positioncode between 7500 and 7599
   UNION ALL
-  select 1 as paytype, 'TotalRenoPay' as paydesc, sum(TOTALSALARYBENEFITS) / 31536000 as totalPay from renopay
+  select 2 as paytype, 'TotalRenoPay' as paydesc, sum(TOTALSALARYBENEFITS) / 31536000 as totalPay from renopay
 ) totalpays;
